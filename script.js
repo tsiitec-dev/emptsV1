@@ -7,8 +7,8 @@ const OS_PASSWORD = 'OS123';
 const VALID_USERNAME = 'empts2025'; // Administrador
 const VALID_PASSWORD = 'empts2025T'; // Senha Admin
 
-const VIEWER_USERNAME = 'viewer'; // Visualizador
-const VIEWER_PASSWORD = 'viewos';
+const VIEWER_USERNAME = 'prestador2025'; // Prestador de Serviço
+const VIEWER_PASSWORD = 'prestador2025#';
 
 // Lista de serviços (mostrada apenas para o Admin)
 const services = [
@@ -299,7 +299,7 @@ osForm.addEventListener('submit', async function(event) {
     const description = document.getElementById('os-description').value;
     const urgency = document.getElementById('os-urgency').value;
     
-    // Lista de imagens vazia, pois a funcionalidade foi removida
+    // Lista de imagens vazia
     let imageUrls = []; 
     
     // 1. Cria e Salva o objeto OS no Firestore
@@ -328,7 +328,7 @@ osForm.addEventListener('submit', async function(event) {
 });
 
 
-// --- 6. Lógica do PDF ---
+// --- 6. Lógica do PDF (Mantida) ---
 
 exportPdfButton.addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
@@ -361,7 +361,7 @@ exportPdfButton.addEventListener('click', function() {
         body: data,
         startY: 35,
         styles: { fontSize: 10, cellPadding: 2, textColor: [33, 33, 33] },
-        // NOVO: Cores Verdes
+        // Cores Verdes
         headStyles: { fillColor: [40, 167, 69], textColor: 255, fontStyle: 'bold' },
         foot: [
             ['TOTAL GERAL', '', '', formatCurrency(grandTotalValue)]
@@ -387,7 +387,7 @@ loginForm.addEventListener('submit', function(event) {
         errorMessage.style.display = 'none';
         showServicesPage();
     } else if (usernameInput === VIEWER_USERNAME && passwordInput === VIEWER_PASSWORD) {
-        // PERFIL 2: Visualizador
+        // PERFIL 2: Prestador/Visualizador
         errorMessage.style.display = 'none';
         showOSViewPage(); 
     } else {
