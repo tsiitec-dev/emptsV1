@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portal de Serviços de Metragem</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Estilos adicionais para o Rodapé e Logo */
+        .footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        
+        /* CORREÇÃO FINAL DO ESPAÇAMENTO DA LOGO (DEIXANDO MAIS PERTO) */
+        #logo-container {
+            /* Margem do container reduzida (afeta o espaço para o H1) */
+            margin-bottom: 5px; 
+            /* Padding inferior reduzido (afeta o espaço entre a logo e a linha) */
+            padding-bottom: 5px; 
+            border-bottom: 1px solid #eee; /* Linha divisória */
+        }
+        
+        #logo-container img {
+            max-width: 250px;
+        }
+        
+        /* Reduzindo a margem padrão do H1 (DEIXANDO MAIS PERTO) */
+        #login-page h1 {
+            margin-top: 10px; 
+            margin-bottom: 30px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-page" class="page-container">
+        
+        <div id="logo-container">
+            <img src="logo.png" alt="Logotipo da Empresa" style="max-width: 250px;"> 
+        </div>
+
+        <h1>🔑 Acesso ao Portal</h1>
+        
+        <form id="login-form">
+            <div class="input-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+            <p id="error-message" class="error-text" style="display: none;">Usuário ou senha inválidos.</p>
+        </form>
+        
+        <div class="footer">
+            Todos os direitos reservados por TSII
+        </div>
+    </div>
+
+    <div id="services-page" class="page-container hidden">
+        <header>
+            <h2>🎉 Bem-vindo(a) ao Painel de Administrador!</h2>
+            <button id="logout-button">Sair</button>
+        </header>
+
+        <section id="services-grid">
+            </section>
+        
+        <div class="footer">
+            Todos os direitos reservados por TSII
+        </div>
+    </div>
+    
+    <div id="calculator-page" class="page-container hidden">
+        <header>
+            <h2>🧮 Calculadora de Metragem</h2>
+            <button id="back-to-services-button">Voltar aos Serviços</button>
+        </header>
+
+        <p class="valor-base">Custo por Metro Quadrado (m²): R$ 40,00</p>
+
+        <form id="calculation-form">
+            <div class="input-group">
+                <label for="company-name">Nome da Empresa:</label>
+                <input type="text" id="company-name" required>
+            </div>
+            <div class="input-group">
+                <label for="room-number">Número da Sala/Residência:</label>
+                <input type="text" id="room-number" required>
+            </div>
+            <div class="input-group">
+                <label for="sqm">Metros Quadrados (m²):</label>
+                <input type="number" id="sqm" min="1" required>
+            </div>
+            <button type="submit" id="add-entry-button">Adicionar Empresa e Calcular</button>
+        </form>
+
+        <div class="results-section">
+            <h3>Empresas Adicionadas:</h3>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Sala</th>
+                        <th>Metragem (m²)</th>
+                        <th>Valor Total (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">TOTAL GERAL</td>
+                        <td id="grand-total-cell">R$ 0,00</td>
+                    </tr>
+                </tfoot>
+            </table>
+            
+            <button id="export-pdf-button" disabled>Exportar Resultado para PDF</button>
+        </div>
+        
+        <div class="footer">
+            Todos os direitos reservados por TSII
+        </div>
+    </div>
+    
+    <div id="os-page" class="page-container hidden">
+        <header>
+            <h2>📝 Criação de Ordem de Serviço</h2>
+            <button id="back-to-services-from-os">Voltar aos Serviços</button>
+        </header>
+
+        <form id="os-form">
+            <div class="input-group">
+                <label for="os-location">Localização/Endereço:</label>
+                <input type="text" id="os-location" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="os-description">Descrição do Serviço (Detalhamento):</label>
+                <textarea id="os-description" rows="4" required></textarea>
+            </div>
+            
+            <div class="input-group">
+                <label for="os-urgency">Nível de Urgência:</label>
+                <select id="os-urgency" required>
+                    <option value="normal">Normal (Até 7 dias)</option>
+                    <option value="media">Média (Até 48h)</option>
+                    <option value="urgente">Urgente (Imediato / 24h)</option>
+                </select>
+            </div>
+            <button type="submit" id="submit-os">Registrar Ordem de Serviço</button>
+        </form>
+        
+        <div class="footer">
+            Todos os direitos reservados por TSII
+        </div>
+    </div>
+
+    <div id="os-view-page" class="page-container hidden">
+        <header>
+            <h2>📋 Ordens de Serviço Abetas</h2>
+            <button id="viewer-logout-button">Sair</button>
+        </header>
+
+        <p>Bem-vindo! Você tem acesso apenas à visualização e acompanhamento das Ordens de Serviço (OS).</p>
+        
+        <div id="os-list">
+            </div>
+
+        <p class="warning-text">⚠️ Você não possui permissão para criar novas OSs.</p>
+        
+        <div class="footer">
+            Todos os direitos reservados por TSII
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyC83wXN3iS3oovtXBjb95kCnZbrCgRswGE",
+        authDomain: "tsii-556b9.firebaseapp.com",
+        projectId: "tsii-556b9",
+        storageBucket: "tsii-556b9.appspot.com",
+        messagingSenderId: "651563871986",
+        appId: "1:651563871986:web:08f1435faba83f5e06aa6b",
+      };
+
+      // Inicializa o Firebase e a referência ao Firestore
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = app.firestore(); 
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
